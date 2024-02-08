@@ -34,7 +34,7 @@ return {
 
 			-- Configure mason to auto install servers
 			require("mason-lspconfig").setup({
-				automatic_installation = { exclude = { "ocamllsp", "gleam" } },
+				automatic_installation = false,
 			})
 
 			-- Override tsserver diagnostics to filter out specific messages
@@ -72,8 +72,7 @@ return {
 				bashls = {},
 				-- clangd = {},
 				cssls = {},
-				gleam = {},
-				graphql = {},
+				-- graphql = {},
 				html = {},
 				jsonls = {},
 				lua_ls = {
@@ -86,10 +85,7 @@ return {
 				},
 				marksman = {},
 				nil_ls = {},
-				ocamllsp = {},
-				prismals = {},
 				pyright = {},
-				solidity = {},
 				sqlls = {},
 				tailwindcss = {
 					-- filetypes = { "reason" },
@@ -167,7 +163,6 @@ return {
 					-- formatting
 					formatting.prettierd,
 					formatting.stylua,
-					formatting.ocamlformat,
 
 					-- diagnostics
 					diagnostics.eslint_d.with({

@@ -14,22 +14,17 @@ return {
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
 					"bash",
-					"c",
 					"css",
-					"gleam",
-					"graphql",
 					"html",
 					"javascript",
 					"json",
 					"lua",
 					"markdown",
-					"ocaml",
-					"ocaml_interface",
-					"prisma",
+					"ruby",
 					"tsx",
 					"typescript",
 					"vim",
-					-- "yaml", This is currently borked see: https://github.com/ikatyang/tree-sitter-yaml/issues/53
+					-- "yaml"
 				},
 				sync_install = false,
 				highlight = {
@@ -37,7 +32,6 @@ return {
 				},
 				indent = {
 					enable = true,
-					disable = { "ocaml", "ocaml_interface" },
 				},
 				autopairs = {
 					enable = true,
