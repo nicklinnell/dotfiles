@@ -85,7 +85,9 @@ return {
 				},
 				marksman = {},
 				nil_ls = {},
-				pyright = {},
+				-- pyright = {},
+				ruby_ls = {},
+				rubocop = {},
 				sqlls = {},
 				tailwindcss = {
 					-- filetypes = { "reason" },
