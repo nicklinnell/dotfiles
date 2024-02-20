@@ -8,6 +8,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
@@ -25,6 +26,29 @@ return {
 
 			-- Integrate nvim-autopairs with cmp
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
+			-- `/` cmdline setup.
+			cmp.setup.cmdline("/", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = {
+					{ name = "buffer" },
+				},
+			})
+
+			-- `:` cmdline setup.
+			cmp.setup.cmdline(":", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = "path" },
+				}, {
+					{
+						name = "cmdline",
+						option = {
+							ignore_cmds = { "Man", "!" },
+						},
+					},
+				}),
+			})
 
 			-- Load snippets
 			require("luasnip.loaders.from_vscode").lazy_load()
