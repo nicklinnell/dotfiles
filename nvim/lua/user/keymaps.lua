@@ -61,13 +61,13 @@ end)
 nnoremap("<leader>'", "<C-^>", { desc = "Switch to last buffer" })
 
 -- Save with leader key
-nnoremap("<leader>w", "<cmd>w<cr>", { silent = false })
+nnoremap("<leader>w", "<cmd>w<cr>", { desc = "Save with leader key", silent = false })
 
 -- Quit with leader key
-nnoremap("<leader>q", "<cmd>q<cr>", { silent = false })
+nnoremap("<leader>q", "<cmd>q<cr>", { desc = "Quit with leader key", silent = false })
 
 -- Save and Quit with leader key
-nnoremap("<leader>z", "<cmd>wq<cr>", { silent = false })
+nnoremap("<leader>z", "<cmd>wq<cr>", { desc = "Save and quit with leader key", silent = false })
 
 -- Map Oil to <leader>e
 -- nnoremap("<leader>e", function()
