@@ -24,7 +24,7 @@ return {
 					"tsx",
 					"typescript",
 					"vim",
-					-- "yaml"
+					"yaml",
 				},
 				sync_install = false,
 				highlight = {
