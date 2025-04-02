@@ -18,36 +18,21 @@ return {
 		config = function()
 			local map_lsp_keybinds = require("user.keymaps").map_lsp_keybinds -- Has to load keymaps before pluginslsp
 
-			-- Override tsserver diagnostics to filter out specific messages
-			local messages_to_filter = {
-				"This may be converted to an async function.",
-			}
-
-			local function tsserver_on_publish_diagnostics_override(_, result, ctx, config)
-				local filtered_diagnostics = {}
-
-				for _, diagnostic in ipairs(result.diagnostics) do
-					local found = false
-					for _, message in ipairs(messages_to_filter) do
-						if diagnostic.message == message then
-							found = true
-							break
-						end
-					end
-					if not found then
-						table.insert(filtered_diagnostics, diagnostic)
-					end
-				end
-
-				result.diagnostics = filtered_diagnostics
-
-				vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
-			end
-
 			-- Default handlers for LSP
 			local default_handlers = {
 				["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
 				["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+			}
+
+			local ts_ls_inlay_hints = {
+				includeInlayEnumMemberValueHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayVariableTypeHints = true,
+				includeInlayVariableTypeHintsWhenTypeMatchesName = true,
 			}
 
 			-- Function to run when neovim connects to a Lsp client
@@ -78,6 +63,7 @@ return {
 				cssls = {},
 				gleam = {},
 				eslint = {
+					autostart = false,
 					cmd = { "vscode-eslint-language-server", "--stdio", "--max-old-space-size=12288" },
 					settings = {
 						format = false,
@@ -104,22 +90,22 @@ return {
 				},
 				marksman = {},
 				nil_ls = {},
-				-- pyright = {},
+				pyright = {},
 				ruby_lsp = {},
 				rubocop = {},
 				sqlls = {},
 				tailwindcss = {
 					-- filetypes = { "reason" },
 				},
-				tsserver = {
+				ts_ls = {
 					settings = {
 						maxTsServerMemory = 12288,
-					},
-					handlers = {
-						["textDocument/publishDiagnostics"] = vim.lsp.with(
-							tsserver_on_publish_diagnostics_override,
-							{}
-						),
+						typescript = {
+							inlayHints = ts_ls_inlay_hints,
+						},
+						javascript = {
+							inlayHints = ts_ls_inlay_hints,
+						},
 					},
 				},
 				yamlls = {},
@@ -149,6 +135,7 @@ return {
 			-- Iterate over our servers and set them up
 			for name, config in pairs(servers) do
 				require("lspconfig")[name].setup({
+					autostart = config.autostart,
 					cmd = config.cmd,
 					capabilities = capabilities,
 					filetypes = config.filetypes,
@@ -158,6 +145,18 @@ return {
 					root_dir = config.root_dir,
 				})
 			end
+
+			require("lspconfig").bashls.setup({
+				on_attach = function(_, bufnr)
+					-- Get the file name of the current buffer
+					local fname = vim.api.nvim_buf_get_name(bufnr)
+
+					-- If the file is a .env file, disable diagnostics
+					if fname:match("%.env") then
+						vim.diagnostic.enable(false, { bufnr })
+					end
+				end,
+			})
 
 			-- Setup mason so it can manage 3rd party LSP servers
 			require("mason").setup({
@@ -185,15 +184,20 @@ return {
 		cmd = { "ConformInfo" },
 		opts = {
 			notify_on_error = false,
-			format_on_save = {
+			default_format_opts = {
 				async = true,
 				timeout_ms = 500,
-				lsp_fallback = true,
+				lsp_format = "fallback",
+			},
+			format_after_save = {
+				async = true,
+				timeout_ms = 500,
+				lsp_format = "fallback",
 			},
 			formatters_by_ft = {
-				javascript = { { "prettierd", "prettier" } },
-				typescript = { { "prettierd", "prettier" } },
-				typescriptreact = { { "prettierd", "prettier" } },
+				javascript = { "prettierd", "prettier" },
+				typescript = { "prettierd", "prettier" },
+				typescriptreact = { "prettierd", "prettier" },
 				lua = { "stylua" },
 			},
 		},

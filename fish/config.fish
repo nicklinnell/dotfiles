@@ -19,3 +19,12 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 status --is-interactive; and rbenv init - fish | source
+
+# Mysql2 gem environment variables
+set -Ux LDFLAGS "-L/opt/homebrew/opt/mysql@8.0/lib"
+set -Ux CPPFLAGS "-I/opt/homebrew/opt/mysql@8.0/include"
+set -Ux PKG_CONFIG_PATH "/opt/homebrew/opt/mysql@8.0/lib/pkgconfig"
+set -Ux PATH "/opt/homebrew/opt/mysql@8.0/bin" $PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/nick/Applications/google-cloud-sdk/path.fish.inc' ]; . '/Users/nick/Applications/google-cloud-sdk/path.fish.inc'; end

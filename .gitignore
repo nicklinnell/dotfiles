@@ -1,2 +1,8 @@
 github-copilot/hosts.json
 .DS_Store
+gcloud/logs
+gcloud/virtenv
+gcloud/hidden_gcloud_config_universe_descriptor_data_cache_configs.db
+gcloud/access_tokens.db
+gcloud/credentials.db
+gcloud/default_configs.db

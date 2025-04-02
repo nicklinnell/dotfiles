@@ -1,0 +1,8 @@
+[core]
+account = nick@kyan.com
+project = mgcp-1227617-stonehaven-prod
+
+[compute]
+zone = europe-west2-a
+region = europe-west2
+
