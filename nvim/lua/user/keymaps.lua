@@ -368,10 +368,4 @@ tnoremap("<C-k>", [[<Cmd>wincmd k<CR>]], { desc = "Terminal: move to upper windo
 tnoremap("<C-l>", [[<Cmd>wincmd l<CR>]], { desc = "Terminal: move to right window" })
 tnoremap("<space>", "<space>", { desc = "Re-enable space in terminal mode" })
 
--- Augment keymaps
-nnoremap("<leader>ac", ":Augment chat<CR>", { desc = "[A]ugment [C]hat" })
-vnoremap("<leader>ac", ":Augment chat<CR>", { desc = "[A]ugment [C]hat" })
-nnoremap("<leader>an", ":Augment chat-new<CR>", { desc = "[A]ugment [N]ew chat" })
-nnoremap("<leader>at", ":Augment chat-toggle<CR>", { desc = "[A]ugment [T]oggle chat" })
-
 return M
