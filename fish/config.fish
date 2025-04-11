@@ -15,6 +15,12 @@ end
 
 alias cd='cdnvm'
 
+# tmux aliases
+alias ta="tmux attach -t"
+alias tn="tmux new -s"
+alias tls="tmux ls"
+alias tkill="tmux kill-session -t"
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
