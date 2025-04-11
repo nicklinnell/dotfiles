@@ -22,6 +22,8 @@ return {
 						return
 					end
 				end
+
+				-- Fix the deprecation warning by passing only the supported parameters
 				return notify(message, level, merged_opts)
 			end
 
