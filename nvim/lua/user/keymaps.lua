@@ -156,16 +156,16 @@ end, { desc = "Go to previous warning diagnostic and center cursor" })
 nnoremap("<leader>ld", vim.diagnostic.setqflist, { desc = "Quickfix [L]ist [D]iagnostics" })
 
 -- Navigate to next qflist item
-nnoremap("<leader>cn", ":cnext<cr>zz", { desc = "Next quickfix item and center" })
+nnoremap("<leader>qn", ":cnext<cr>zz", { desc = "[Q]uickfix [N]ext item and center" })
 
 -- Navigate to previous qflist item
-nnoremap("<leader>cp", ":cprevious<cr>zz", { desc = "Previous quickfix item and center" })
+nnoremap("<leader>qp", ":cprevious<cr>zz", { desc = "[Q]uickfix [P]revious item and center" })
 
 -- Open the qflist
-nnoremap("<leader>co", ":copen<cr>zz", { desc = "Open quickfix list and center" })
+nnoremap("<leader>qo", ":copen<cr>zz", { desc = "[Q]uickfix [O]pen list and center" })
 
 -- Close the qflist
-nnoremap("<leader>cc", ":cclose<cr>zz", { desc = "Close quickfix list" })
+nnoremap("<leader>qc", ":cclose<cr>zz", { desc = "[Q]uickfix [C]lose list" })
 
 -- Map MaximizerToggle (szw/vim-maximizer) to leader-m
 nnoremap("<leader>m", ":MaximizerToggle<cr>", { desc = "Toggle [M]aximizer" })
@@ -327,10 +327,13 @@ nnoremap("<leader>[", function()
 	vim.api.nvim_feedkeys("zz", "n", false)
 end, { desc = "Illuminate: Goto previous reference" })
 
--- Open Copilot panel
-nnoremap("<leader>oc", function()
-	require("copilot.panel").open({})
-end, { desc = "[O]pen [C]opilot panel" })
+-- -- Open Copilot panel
+-- nnoremap("<leader>oc", function()
+-- 	require("copilot.panel").open({})
+-- end, { desc = "[O]pen [C]opilot panel" })
+
+-- Open CopilotChat
+nnoremap("<leader>oc", "<cmd>CopilotChatToggle<cr>", { desc = "[O]pen [C]opilot chat" })
 
 -- Fugitive: diff changes since last commit
 nnoremap("<leader>gv", "<cmd>Gvdiffsplit!<cr>", { desc = "[G]it [V]ertical Diff since last commit" })
@@ -367,5 +370,15 @@ tnoremap("<C-j>", [[<Cmd>wincmd j<CR>]], { desc = "Terminal: move to lower windo
 tnoremap("<C-k>", [[<Cmd>wincmd k<CR>]], { desc = "Terminal: move to upper window" })
 tnoremap("<C-l>", [[<Cmd>wincmd l<CR>]], { desc = "Terminal: move to right window" })
 tnoremap("<space>", "<space>", { desc = "Re-enable space in terminal mode" })
+
+-- CopilotChat Keybinds
+nnoremap("<leader>cc", "<cmd>CopilotChatToggle<cr>", { desc = "Toggle [C]opilot [C]hat" })
+nnoremap("<leader>ce", "<cmd>CopilotChatExplain<cr>", { desc = "Copilot [C]hat [E]xplain code" })
+nnoremap("<leader>ct", "<cmd>CopilotChatTests<cr>", { desc = "Copilot [C]hat Generate [T]ests" })
+nnoremap("<leader>cr", "<cmd>CopilotChatReview<cr>", { desc = "Copilot [C]hat [R]eview code" })
+nnoremap("<leader>cb", "<cmd>CopilotChatBuffer<cr>", { desc = "Copilot [C]hat with current [B]uffer" })
+vnoremap("<leader>ce", ":CopilotChatExplain<cr>", { desc = "Copilot [C]hat [E]xplain selected code" })
+vnoremap("<leader>cr", ":CopilotChatReview<cr>", { desc = "Copilot [C]hat [R]eview selected code" })
+vnoremap("<leader>ci", ":CopilotChatImplement<cr>", { desc = "Copilot [C]hat [I]mplement selection" })
 
 return M

@@ -57,17 +57,17 @@ return {
 					},
 					lualine_x = {
 						"filetype",
-						{
-							"copilot",
-							show_colors = true,
-							show_loading = true,
-						},
+						-- {
+						-- 	"copilot",
+						-- 	show_colors = true,
+						-- 	show_loading = true,
+						-- },
 					},
 				},
 			})
 		end,
 	},
-	{
-		"AndreM222/copilot-lualine",
-	},
+	-- {
+	-- 	"AndreM222/copilot-lualine",
+	-- },
 }

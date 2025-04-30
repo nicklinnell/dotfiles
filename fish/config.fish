@@ -34,3 +34,7 @@ set -Ux PATH "/opt/homebrew/opt/mysql@8.0/bin" $PATH
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/nick/Applications/google-cloud-sdk/path.fish.inc' ]; . '/Users/nick/Applications/google-cloud-sdk/path.fish.inc'; end
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :
