@@ -7,3 +7,4 @@ gcloud/access_tokens.db
 gcloud/credentials.db
 gcloud/default_configs.db
 fish/fish_variables
+github-copilot/apps.json
