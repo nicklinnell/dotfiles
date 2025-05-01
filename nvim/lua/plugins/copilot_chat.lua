@@ -44,6 +44,11 @@ return {
 			show_user_selection = true, -- Show user selection in chat
 			context = "buffers", -- Context mode for chat (defaults to taking content from current buffers)
 			prompts = prompts,
+			window = {
+				width = 0.3, -- Width of the chat window
+				height = 0.5, -- Height of the chat window
+				border = "rounded", -- Border style for the chat window
+			},
 		},
 		config = function(_, opts)
 			local chat = require("CopilotChat")

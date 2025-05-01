@@ -6,56 +6,27 @@ return {
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
 		end,
+		opts = {
+			-- Your configuration with defaults goes here
+			-- No special config needed as the plugin has good defaults
+		},
 		config = function()
-			local which_key = require("which-key")
+			local wk = require("which-key")
+			wk.setup()
 
-			which_key.setup({
-				plugins = {
-					marks = true,
-					registers = true,
-					spelling = {
-						enabled = true,
-						suggestions = 20,
-					},
-					presets = {
-						operators = true,
-						motions = true,
-						text_objects = true,
-						windows = true,
-						nav = true,
-						z = true,
-						g = true,
-					},
-				},
-				window = {
-					border = "rounded",
-					padding = { 2, 2, 2, 2 },
-				},
-				layout = {
-					height = { min = 4, max = 25 },
-					width = { min = 20, max = 50 },
-					spacing = 3,
-					align = "center",
-				},
-				ignore_missing = false,
-				hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
-				show_help = true,
-				triggers = "auto",
-			})
-
-			-- Register all the keymaps that have descriptions
-			which_key.register({
-				["<leader>"] = {
-					f = { name = "Format" },
-					g = { name = "Git" },
-					h = { name = "Harpoon" },
-					l = { name = "LSP" },
-					n = { name = "Notifications" },
-					o = { name = "Open" },
-					r = { name = "Rename/Rotate" },
-					s = { name = "Search/Symbols" },
-					t = { name = "TypeScript" },
-				},
+			-- Register leader key groups using the new recommended spec format
+			wk.register({
+				{ "<leader>c", group = "code" },
+				{ "<leader>f", group = "format" },
+				{ "<leader>g", group = "git" },
+				{ "<leader>h", group = "harpoon" },
+				{ "<leader>l", group = "lsp" },
+				{ "<leader>n", group = "notifications" },
+				{ "<leader>o", group = "open" },
+				{ "<leader>q", group = "quit/quickfix" },
+				{ "<leader>r", group = "rename/rotate" },
+				{ "<leader>s", group = "search/symbols" },
+				{ "<leader>t", group = "typescript" },
 			})
 		end,
 	},
