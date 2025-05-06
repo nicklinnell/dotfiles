@@ -39,7 +39,7 @@ return {
 			error_header = "## Error ",
 			separator = "---",
 			debug = false, -- Set to true to enable debug logging
-			model = "o4-mini", -- Default model to use
+			model = "claude-3.7-sonnet", -- Default model to use
 			temperature = 0.1, -- Response temperature
 			show_user_selection = true, -- Show user selection in chat
 			context = "buffers", -- Context mode for chat (defaults to taking content from current buffers)
