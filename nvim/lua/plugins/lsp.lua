@@ -91,8 +91,14 @@ return {
 				marksman = {},
 				nil_ls = {},
 				pyright = {},
-				ruby_lsp = {},
-				rubocop = {},
+				ruby_lsp = {
+					mason = false,
+					cmd = { vim.fn.expand("~/.rbenv/shims/ruby-lsp") },
+				},
+				rubocop = {
+					mason = false,
+					cmd = { vim.fn.expand("~/.rbenv/shims/rubocop"), "--lsp" },
+				},
 				sqlls = {},
 				tailwindcss = {
 					-- filetypes = { "reason" },
@@ -205,3 +211,4 @@ return {
 		},
 	},
 }
+
